@@ -5,12 +5,30 @@ body {
   padding: 0;
 }
 
+/* @media ( prefers-color-scheme: dark ) {
+  .container {
+    background: #333;
+    color: #fff;
+  }
+  strong {
+    color: #fff;
+  }
+}
+
+@media ( prefers-color-scheme: light ) {
+  .container {
+    background: #ddd;
+    color: #000;
+  }
+} */
+
+
 video {
   width: 100%;
   height: auto;
 }
 
-.content {
+.container {
   padding-top: 20px;
   text-align: center;
 }

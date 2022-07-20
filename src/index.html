@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <title> Electron Tutorial </title>
     <link
       rel="stylesheet"
@@ -11,20 +12,35 @@
     <script src="render.js" defer></script>
   </head>
   <body>
-    <div class="content">
-      <h1>⚡ Electron Screen Recorder</h1>
-      <video></video>
-      <button id="startBtn" class="button is-primary">Start</button>
-      <button id="stopBtn" class="button is-warning">Stop</button>
-      <hr />
-      <button id="videoSelectBtn" class="button is-text">
-        Choose a Video Source
-      </button>
+    
+    <div class="container">
+
+      <header>
+        <h1>⚡ Electron Screen Recorder</h1>
+        <p>Current theme source: <strong id="theme-source">System</strong></p>
+        <button id="toggle-dark-mode">Toggle Dark Mode</button>
+        <button id="reset-to-system">Reset to System Theme</button>
+      </header>
+
+      <section class="section--vedio">
+        <video></video>
+        <button id="startBtn" class="button is-primary">Start</button>
+        <button id="stopBtn" class="button is-warning">Stop</button>
+        <hr />
+        <button id="videoSelectBtn" class="button is-text">
+          Choose a Video Source
+        </button>
+      </section>
+      
+      <footer class="section--footer">
+        <p>
+          We are using Node.js <span id="node-version"></span>,
+          Chromium <span id="chrome-version"></span>,
+          and Electron <span id="electron-version"></span>.
+        </p>
+      </footer>
+      
     </div>
-    <p>
-      We are using Node.js <span id="node-version"></span>,
-      Chromium <span id="chrome-version"></span>,
-      and Electron <span id="electron-version"></span>.
-    </p>
+    
   </body>
 </html>
