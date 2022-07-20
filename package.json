@@ -1,6 +1,6 @@
 {
   "name": "electron-tutorial",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "My Electron application description",
   "author": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url" : "https://github.com/sangwoong03/electron-tutorial.git"
+    "url": "https://github.com/sangwoong03/electron-tutorial.git"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -27,7 +27,9 @@
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.8.3",
+    "electron-log": "^4.4.8",
     "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^4.6.5",
     "vue": "^2.6.14"
   },
   "devDependencies": {
