@@ -36,3 +36,19 @@ video {
 p {
   text-align: center;
 }
+
+.timer-wraaper {
+  width: 100%;
+  padding: 100px 0;
+}
+
+.timer-wraaper input {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.timer-wraaper .button__group {
+  display: flex;
+  justify-content: space-around;
+}

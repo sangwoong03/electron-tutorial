@@ -10,10 +10,11 @@ if (require("electron-squirrel-startup")) {
 const createWindow = () => {
 	// Create the browser window.
 	const mainWindow = new BrowserWindow({
-		width: 800,
-		height: 600,
+		width: 400,
+		height: 300,
 		webPreferences: {
 			nodeIntegration: true,
+			enableRemoteModule: true,
 			preload: path.join(__dirname, "preload.js"),
 		},
 	});
@@ -22,19 +23,23 @@ const createWindow = () => {
 	mainWindow.loadFile(path.join(__dirname, "index.html"));
 
 	// Open the DevTools.
-	mainWindow.webContents.openDevTools();
+	// mainWindow.webContents.openDevTools();
 
-	ipcMain.handle("dark-mode:toggle", () => {
-		if (nativeTheme.shouldUseDarkColors) {
-			nativeTheme.themeSource = "light";
-		} else {
-			nativeTheme.themeSource = "dark";
-		}
-		return nativeTheme.shouldUseDarkColors;
-	});
+	// dark-mode
+	// ipcMain.handle("dark-mode:toggle", () => {
+	// 	if (nativeTheme.shouldUseDarkColors) {
+	// 		nativeTheme.themeSource = "light";
+	// 	} else {
+	// 		nativeTheme.themeSource = "dark";
+	// 	}
+	// 	return nativeTheme.shouldUseDarkColors;
+	// });
 
-	ipcMain.handle("dark-mode:system", () => {
-		nativeTheme.themeSource = "system";
+	// ipcMain.handle("dark-mode:system", () => {
+	// 	nativeTheme.themeSource = "system";
+	// });
+	ipcMain.handle("timer", (event, data) => {
+		console.log("start");
 	});
 };
 
