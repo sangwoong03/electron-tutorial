@@ -7,16 +7,24 @@
     "name": "sangwoong",
     "email": "sangwoong03@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url" : "https://github.com/sangwoong03/electron-tutorial.git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "electron:build": "vue-cli-service electron:build",
+    "electron:serve": "vue-cli-service electron:serve",
     "make": "electron-forge make",
     "package": "electron-forge package",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps",
     "publish": "electron-forge publish",
     "start": "electron-forge start"
   },
-  "main": "src/main.js",
+  "main": "background.js",
   "dependencies": {
     "core-js": "^3.8.3",
     "electron-squirrel-startup": "^1.0.0",
@@ -34,8 +42,10 @@
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "electron": "19.0.8",
+    "electron-devtools-installer": "^3.1.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "vue-cli-plugin-electron-builder": "~2.1.1",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
