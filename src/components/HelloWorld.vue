@@ -1,5 +1,11 @@
 <template>
   <div class="hello">
+    <v-app id="app">
+      <v-btn color="success">Success</v-btn>
+      <v-btn color="error">Error</v-btn>
+      <v-btn color="warning">Warning</v-btn>
+      <v-btn color="info">Info</v-btn>
+    </v-app>
     <h1>{{version}}</h1>
     <h2>{{status}}</h2>
     <div class="hidden" id="notification">

@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "electron-tutorial",
   "version": "1.0.2",
   "private": true,
@@ -30,7 +31,13 @@
     "electron-log": "^4.4.8",
     "electron-squirrel-startup": "^1.0.0",
     "electron-updater": "^4.6.5",
-    "vue": "^2.6.14"
+    "ffi-napi": "^4.0.3",
+    "node-pre-gyp": "^0.17.0",
+    "sqlite3": "^5.0.9",
+    "vue": "^2.6.14",
+    "vuetify": "^2.6.7",
+    "win32": "^7.1.0",
+    "win32-api": "^17.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
