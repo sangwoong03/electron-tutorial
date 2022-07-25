@@ -1,86 +1,75 @@
 import ffi from "ffi-napi";
 import ref from "ref-napi";
-// console.log(ffi);
-// console.log(ref.refType);
-
-const voidPtr = ref.refType(ref.types.void);
-const stringPtr = ref.refType(ref.types.CString);
+import iconv from "iconv-lite";
 
 const user32 = ffi.Library("user32.dll", {
-	EnumWindows: ["bool", [voidPtr, "int32"]],
 	GetWindowTextA: ["long", ["long", "string", "long"]],
 	GetClassNameA: ["long", ["long", "string", "long"]],
 	FindWindowExA: ["long", ["long", "long", "string", "string"]],
-	SendMessageA: ["int32", ["long", "int32", "uint32", "long"]],
+	SendMessageA: ["long", ["long", "int32", "uint32", "string"]],
 	GetClassLongA: ["long", ["long", "int32"]],
+	SetWindowTextA: ["bool", ["long", "string"]],
+	PostMessageA: ["bool", ["long", "int32", "long", "long"]],
 });
 
-let handle = null;
-let buf;
-const enumWindowProc = ffi.Callback(
-	"bool",
-	["long", "int32"],
-	function (hwnd, IParama) {
-		buf = Buffer.alloc(255);
-		user32.GetWindowTextA(hwnd, buf, 255);
-		// title bar name into length
-		// console.log(b);
-		const text = ref.readCString(buf, 0);
-		// window text
-		// console.log(text);
-		if (text.indexOf("kakao") >= 0) {
-			console.log("FOUND:", text, hwnd);
-			handle = hwnd;
-			const a = user32.GetClassNameA(handle, buf, 255);
-			console.log("ClassName :: ", a);
+let KAKAO_HANDLE = null;
+let BUF = Buffer.alloc(255);
 
-			return true;
-		}
-		return false;
-	},
-);
-// 첫번째 실행 중인 프로그램
-const hwnd = user32.FindWindowExA(0, 0, null, null);
-console.log(hwnd);
+// 카카오 윈도우 텍스트 이름 변경
+function changeKakakoText() {
+	// 카카오톡 프로그램 윈도우 핸들 찾기
+	const hwnd = user32.FindWindowExA(0, 0, "EVA_Window_Dblclk", null);
+	KAKAO_HANDLE = hwnd;
+	console.log(`KakaoMain :: ${KAKAO_HANDLE}`);
 
-// 카카오톡 프로그램 핸들 찾기
-const hwnd2 = user32.FindWindowExA(0, 0, "EVA_Window_Dblclk", null);
+	if (KAKAO_HANDLE) {
+		// 카카오톡 메인창 텍스트 변경
+		user32.SetWindowTextA(KAKAO_HANDLE, "KakaoTalkMain");
+		return KAKAO_HANDLE;
+	} else {
+		return (KAKAO_HANDLE = 0);
+	}
+}
+changeKakakoText();
 
-// 카카오톡 하위 프로그램 창 핸들 찾기
-const hwnd3 = user32.FindWindowExA(hwnd2, 0, "EVA_ChildWindow", null);
-console.log(hwnd2);
-console.log(hwnd3);
+// 카카오톡 채팅 발송
+function activeChat() {
+	// 카카오톡 메인창 하위 프로그램 접근
+	const childWindow = user32.FindWindowExA(
+		KAKAO_HANDLE,
+		0,
+		"EVA_ChildWindow",
+		null,
+	);
+	user32.GetWindowTextA(childWindow, BUF, 255); // 텍스트 찾기
+	const childText = ref.readCString(BUF, 0);
+	console.log(`KakaoChild :: ${childWindow}, ${childText}`);
 
-buf = Buffer.alloc(255);
+	// 첫번째 항목
+	const contactList = user32.FindWindowExA(childWindow, 0, "EVA_Window", null);
+	const edit = user32.FindWindowExA(contactList, 0, "Edit", null);
+	console.log(`search_bar :: ${edit}`);
 
-// 텍스트 찾기
-const kakaoTalk = user32.GetWindowTextA(hwnd2, buf, 255);
-const kakaoChildWindow = user32.GetWindowTextA(hwnd3, buf, 255);
+	// 인코딩
+	const name = iconv.encode("건모", "euc-kr");
+	// 검색창 검색어 넣기
+	// WM_SETTEXT = 0x000c
+	user32.SendMessageA(edit, 0x000c, 0, name);
 
-// 빈 버퍼에 담아서 첫번째 문자열을 출력
-// 단계별로 진행해야함.
-const text = ref.readCString(buf, 0);
+	// 검색리스트 중 가장 맨위 카톡방 열기
+	// *********************************** 이미 카톡방이 열려있을 때 로직 짜야됨
+	// WM_KEYDOWN = 0x0100
+	// VK_RETURN = 0x26
+	user32.PostMessageA(edit, 0x0100, 0x0d, 0);
 
-// 결과
-console.log(kakaoTalk);
-console.log(kakaoChildWindow, text);
-
-// 위 함수 실행
-// user32.EnumWindows(enumWindowProc, 0);
-//
-//
-// win32 api 불러오기
-// import { User32 } from "win32-api/promise";
-// const user32 = User32.load();
-// const firstHwnd = await user32.FindWindowExW(0, 0, null, null);
-// console.log(firstHwnd);
-// const kakaoTitle = Buffer.from("KakaoTalk.exe");
-// console.log(kakaoTitle.toString());
-// const kakaoHwnd = await user32.FindWindowExW(0, 0, null, null);
-// console.log(kakaoHwnd);
-// if (handle) {
-// 	const wParam = 1000;
-// 	const msgld = 9999;
-
-// 	user32.SendMessageA(handle, msgld, wParam, 0);
-// }
+	if (edit) {
+		setTimeout(function () {
+			const chatRoom = user32.FindWindowExA(0, 0, "#32770", null);
+			const chatInput = user32.FindWindowExA(chatRoom, 0, "RichEdit50W", null);
+			const text = iconv.encode("메디스트림", "euc-kr");
+			user32.SendMessageA(chatInput, 0x000c, 0, text);
+			user32.PostMessageA(chatInput, 0x0100, 0x0d, 0);
+		}, 1000);
+	}
+}
+activeChat();
