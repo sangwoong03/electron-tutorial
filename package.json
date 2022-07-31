@@ -1,112 +1,38 @@
 {
-  "type": "module",
-  "name": "electron-tutorial",
-  "version": "1.0.2",
-  "private": true,
-  "description": "My Electron application description",
-  "author": {
-    "name": "sangwoong",
-    "email": "sangwoong03@gmail.com"
-  },
+  "name": "kakaogun",
+  "version": "0.0.0",
+  "description": "kakaogun-electron-program",
+  "main": "main.js",
+  "keywords": [],
+  "author": "medistream",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sangwoong03/electron-tutorial.git"
+    "url": "https://github.com/medistream-team/kakaogun.git"
   },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "electron:build": "vue-cli-service electron:build",
-    "electron:serve": "vue-cli-service electron:serve",
-    "make": "electron-forge make",
-    "package": "electron-forge package",
-    "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps",
-    "publish": "electron-forge publish",
-    "start": "electron-forge start"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon —exec electron .",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always",
+    "start": "electron ."
   },
-  "main": "background.js",
   "dependencies": {
-    "core-js": "^3.8.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "electron-localshortcut": "^3.2.1",
     "electron-log": "^4.4.8",
-    "electron-squirrel-startup": "^1.0.0",
-    "electron-updater": "^4.6.5",
+    "electron-updater": "^5.0.5",
+    "express": "^4.18.1",
     "ffi-napi": "^4.0.3",
     "iconv-lite": "^0.6.3",
-    "node-pre-gyp": "^0.17.0",
-    "sqlite3": "^5.0.9",
-    "vue": "^2.6.14",
-    "vuetify": "^2.6.7",
-    "win32": "^7.1.0",
-    "win32-api": "^17.1.0"
+    "inticons": "^0.3.6",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3",
+    "sequelize": "^6.21.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.16",
-    "@electron-forge/cli": "^6.0.0-beta.64",
-    "@electron-forge/maker-deb": "^6.0.0-beta.64",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.64",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.64",
-    "@electron-forge/maker-zip": "^6.0.0-beta.64",
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "electron": "19.0.8",
-    "electron-devtools-installer": "^3.1.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "vue-cli-plugin-electron-builder": "~2.1.1",
-    "vue-template-compiler": "^2.6.14"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "@babel/eslint-parser"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
-  "_id": "electron-tutorial@1.0.0",
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "electron_tutorial"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
-  },
-  "keywords": [],
-  "license": "MIT",
-  "productName": "electron-tutorial",
-  "readme": "ERROR: No README data found!"
+    "electron": "^19.0.9",
+    "electron-builder": "^23.1.0"
+  }
 }
