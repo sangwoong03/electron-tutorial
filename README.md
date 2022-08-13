@@ -2,11 +2,14 @@
 
 - 해당 레포지토리는 `Electron` 튜토리얼 공부 레포지토리입니다.
 
-:: 참고
+### :: References
 
 - [공식문서 en](https://www.electronjs.org/)
-- [한글 버전](https://tinydew4.github.io/electron-ko)
+- [공식문서 ko](https://tinydew4.github.io/electron-ko)
 - [참고용 블로그](https://programmerk.tistory.com/55)
+
+<br>
+<br>
 
 ## ✅ Electron Tutorial
 
@@ -14,7 +17,12 @@
 
 - 기존의 웹앱이 있다면 `.exe` 확장자 명의 실행 파일로 데스크탑 앱 생성 가능
 
-## ✅ 초기 세팅 :: Only Electron
+<br>
+<br>
+
+## ✅ Initial Settings :: Only Electron
+
+<br>
 
 ### 📌 1. npx
 
@@ -59,7 +67,9 @@ npm install --save-dev electron
 }
 ```
 
-### 📌 3. 일렉트론 실행
+<br>
+
+### 📌 3. start electron app
 
 ```
 npm start
@@ -68,4 +78,8 @@ npm start
 <br>
 <br>
 
-## ✅ 초기 세팅 :: Vue on Electron
+## ✅ Electron Deploy & Auto Updater
+
+Vue, React 등 다른 Framework를 사용하였을 때의 배포 및 자동 업데이트 과정도 추가 할 예정입니다.
+
+우선 `HTML5` 그리고 `Javascript` 를 활용하였을 때의 배포 및 자동 업데이트 과정은 해당 블로그를 참조해주세요. [이동](https://velog.io/@sangwoong/Electron-3.-%EC%9D%BC%EB%A0%89%ED%8A%B8%EB%A1%A0-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%EC%9E%90%EB%8F%99-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8)
