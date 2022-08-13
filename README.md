@@ -7,6 +7,8 @@
 - [공식문서 en](https://www.electronjs.org/)
 - [공식문서 ko](https://tinydew4.github.io/electron-ko)
 - [참고용 블로그](https://programmerk.tistory.com/55)
+- [ffi-napi](https://github.com/node-ffi/node-ffi/wiki/Node-FFI-Tutorial)
+- [Build Tools for ffi-napi](https://github.com/nodejs/node-gyp)
 
 <br>
 <br>
