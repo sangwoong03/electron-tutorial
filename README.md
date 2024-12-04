@@ -82,6 +82,4 @@ npm start
 
 ## ✅ Electron Deploy & Auto Updater
 
-Vue, React 등 다른 Framework를 사용하였을 때의 배포 및 자동 업데이트 과정도 추가 할 예정입니다.
-
 우선 `HTML5` 그리고 `Javascript` 를 활용하였을 때의 배포 및 자동 업데이트 과정은 해당 블로그를 참조해주세요. [이동](https://velog.io/@sangwoong/Electron-3.-%EC%9D%BC%EB%A0%89%ED%8A%B8%EB%A1%A0-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%EC%9E%90%EB%8F%99-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8)
